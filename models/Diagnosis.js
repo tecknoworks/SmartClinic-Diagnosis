@@ -11,11 +11,11 @@ const DiagnosisSchema = new mongoose.Schema(
             type: String,
             require: true
         },
-        appointmentId: {
+        appointment: {
             type: String,
             require: true
         },
-        prescriptions: [{type: mongoose.Schema.Types.ObjectId, ref: 'Prescription'}]
+        prescription: [{type: mongoose.Schema.Types.ObjectId, ref: 'Prescription'}]
     }
 )
 

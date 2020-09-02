@@ -20,26 +20,6 @@ let getById = async (req, res, next) => {
         .catch(err => next(err))
 }
 
-let insertPrescription = async (req, res, next) => {
-    await PrescriptionRepository.create(req.body)
-        .then(
-            prescription => {
-                res.json(prescription)
-            }
-        )
-        .catch(err => next(err))
-}
-
-let deletePrescription = async (req, res, next) => {
-    await PrescriptionRepository.remove(req.params.id)
-        .then(
-            prescription => {
-                res.json(prescription)
-            }
-        )
-        .catch(err => next(err))
-}
-
 let findByDiagnosisId = async (req, res) => {
     await PrescriptionRepository.findByDiagnosisId(req.params.id)
         .then(
@@ -51,7 +31,7 @@ let findByDiagnosisId = async (req, res) => {
 }
 
 let update = async (req, res) => {
-    await PrescriptionRepository.update(req.params.id, { ...req.body })
+    await PrescriptionRepository.updateDrugPrescritpion(req.params.id, { ...req.body })
         .then(
             prescription => {
                 res.json(prescription)
@@ -60,4 +40,4 @@ let update = async (req, res) => {
         .catch(err => next(err))
 }
 
-module.exports = { get, insertPrescription, deletePrescription, update, getById, findByDiagnosisId }
+module.exports = { get, update, getById, findByDiagnosisId }

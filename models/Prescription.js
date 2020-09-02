@@ -15,7 +15,7 @@ const PrescriptionSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Diagnosis'
         },
-        drugId: {
+        drug: {
             type: String,
             require: true
         }

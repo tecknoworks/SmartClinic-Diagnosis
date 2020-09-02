@@ -9,4 +9,7 @@ router.delete("/delete/:id", DiagnosisService.deleteDiagnosis)
 router.get("/getByAppointmentId/:id", DiagnosisService.findByAppointmentId)
 router.put("/update/:id", DiagnosisService.update)
 
+router.post('/addDrugPrescription', DiagnosisService.addDrugToPrescription);
+router.delete('/deleteDrugPrescription/:diagnosis/:drugPrescription', DiagnosisService.deleteDrugPrescription);
+
 module.exports = router

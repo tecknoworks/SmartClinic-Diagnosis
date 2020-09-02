@@ -9,6 +9,16 @@ class PrescriptionRepository extends Repository {
     async findByDiagnosisId(diagnosisId){
         return await this.model.find({diagnosisId: diagnosisId}).exec()
     }
+
+    async updateDrugPrescritpion(id, data){
+        const drugPrescription = await this.model.findById(id);
+        if(!drugPrescription) throw new Error("Drug not found in prescription!");
+
+        Object.assign(drugPrescription,data);
+
+        const newDrug = await drugPrescription.save();
+        return newDrug;
+    }
 }
 
 var prescriptionRepository = new PrescriptionRepository(Prescription);
