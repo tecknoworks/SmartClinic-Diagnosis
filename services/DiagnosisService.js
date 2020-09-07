@@ -43,13 +43,10 @@ let deleteDiagnosis = async (req, res, next) => {
 }
 
 let findByAppointmentId = async (req, res) => {
-    await DiagnosisRepository.findByAppointmentId(req.params.id)
-        .then(
-            diagnosis => {
-                res.json(diagnosis)
-            }
-        )
-        .catch(err => next(err))
+    let id = req.params.id;
+    let diagnosis = await DiagnosisRepository.findByAppointmentId(id);
+
+    res.json(diagnosis[0]);
 }
 
 let update = async (req, res) => {

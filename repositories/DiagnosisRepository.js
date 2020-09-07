@@ -9,7 +9,7 @@ class DiagnosisRepository extends Repository {
     }
 
     async findByAppointmentId(appointmentId) {
-        return await this.model.find({ appointmentId: appointmentId }).exec()
+        return await this.model.find({ appointment: appointmentId }).exec()
     }
 
     async update(id, diagnosisParam) {
