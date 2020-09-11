@@ -6,8 +6,8 @@ class PrescriptionRepository extends Repository {
         super(model)
     }
 
-    async findByDiagnosisId(diagnosisId){
-        return await this.model.find({diagnosisId: diagnosisId}).exec()
+    async findByDiagnosisId(id){
+        return await this.model.find({diagnosis: id}).exec()
     }
 
     async updateDrugPrescritpion(id, data){

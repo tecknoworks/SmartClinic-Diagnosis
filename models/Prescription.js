@@ -3,7 +3,11 @@ const Diagnosis = require('./Diagnosis')
 
 const PrescriptionSchema = new mongoose.Schema(
     {
-        intructions: {
+        name:{
+            type:String,
+            require:true
+        },
+        instructions: {
             type: String,
             require: true
         },

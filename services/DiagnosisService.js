@@ -62,10 +62,17 @@ let update = async (req, res) => {
 let addDrugToPrescription = async (req, res) => {
     let data = { ...req.body };
 
-    let instrunctions = data.instrunctions;
+    let name = data.name;
+    let instructions = data.instructions;
     let quantity = data.quantity;
     let diagnosisId = data.diagnosis;
     let drugId = data.drug;
+
+    console.log(name);
+    console.log(instructions);
+    console.log(quantity);
+    console.log(drugId);
+    console.log(diagnosisId);
 
     //validate
     let diagnosis = await DiagnosisRepository.findById(diagnosisId);
@@ -81,11 +88,13 @@ let addDrugToPrescription = async (req, res) => {
     if (!isPresent) {//if is not present, we want to create one
 
         drugPrescription = await PrescriptionRepository.create({
+            name:name,
             quantity: quantity,
             drug: drugId,
             diagnosis: diagnosisId,
-            instrunctions: instrunctions
+            instructions: instructions
         });
+        console.log(drugPrescription);
         newPrescription = await DiagnosisRepository.addDrugPrescription(diagnosisId, drugPrescription.id);
 
     } else {//if is present, we want to update the qauntity
@@ -109,7 +118,7 @@ let deleteDrugPrescription = async (req, res) => {
     if (!drugPrescription) throw new Error("Drug Prescription not found!");
 
     let newDiagnosis = await DiagnosisRepository.removeDrugPrescription(diagnosisId, drugPrescriptionId);
-    res.json(newDiagnosis);
+    res.json({diagnosis: newDiagnosis, drug: drugPrescription});
 }
 
 module.exports = { get, insertDiagnosis, deleteDiagnosis, findByAppointmentId, update,
